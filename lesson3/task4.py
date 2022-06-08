@@ -7,3 +7,28 @@
 example345). Вызвать вторую функцию. В нее должна передаваться ссылка на созданный файл. Во второй функции 
 необходимо реализовать открытие файла и простой, построчный вывод содержимого.
 '''
+
+import os
+
+
+def create_file(name):
+    file_name = f'{name}.txt'
+    if not os.path.exists(file_name):
+        list_txt = (item for item in ['AB', 'CD', 'EF', 'GH', 'IJ'])
+        list_num = (item for item in [12, 34, 56, 78, 90])
+
+        with open(file_name, 'w') as file:
+            for item in zip(list_txt, list_num):
+                file.writelines(f'{item[0]}{item[1]}\n')
+
+        print_file(file_name)
+    else:
+        print(f'Файл {name} уже существует')
+
+
+def print_file(file_path):
+    with open(file_path, 'r') as file:
+        print(file.read())
+
+
+create_file('test')
